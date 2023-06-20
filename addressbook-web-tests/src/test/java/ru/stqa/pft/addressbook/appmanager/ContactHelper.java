@@ -4,39 +4,37 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import ru.stqa.pft.addressbook.model.ContactData;
 
-public class ContactHelper {
-  private FirefoxDriver wd;
+public class ContactHelper extends BaseHelper{
 
-  public ContactHelper(FirefoxDriver wd) {
-    this.wd = wd;
+  public ContactHelper(FirefoxDriver wd)  {
+    super(wd);
   }
 
   public void goToHomePage() {
-    wd.findElement(By.linkText("home page")).click();
+    click(By.linkText("home page"));
   }
 
   public void submitContactCreation() {
-    wd.findElement(By.xpath("//div[@id='content']/form/input[21]")).click();
+    click(By.xpath("//div[@id='content']/form/input[21]"));
   }
 
   public void fillContactForm(ContactData contactData) {
-    wd.findElement(By.name("firstname")).click();
-    wd.findElement(By.name("firstname")).sendKeys(contactData.getFirstName());
-    wd.findElement(By.name("middlename")).sendKeys(contactData.getMiddleName());
-    wd.findElement(By.name("lastname")).sendKeys(contactData.getLastName());
-    wd.findElement(By.name("nickname")).sendKeys(contactData.getNickName());
-    wd.findElement(By.name("title")).sendKeys(contactData.getTitle());
-    wd.findElement(By.name("company")).sendKeys(contactData.getCompanyName());
-    wd.findElement(By.name("address")).sendKeys(contactData.getAddressName());
-    wd.findElement(By.name("home")).sendKeys(contactData.getHomePhone());
-    wd.findElement(By.name("mobile")).sendKeys(contactData.getMobilePhone());
-    wd.findElement(By.name("work")).sendKeys(contactData.getWorkName());
-    wd.findElement(By.name("fax")).sendKeys(contactData.getFaxPhone());
-    wd.findElement(By.name("email")).sendKeys(contactData.getEmail_one());
-    wd.findElement(By.name("homepage")).sendKeys(contactData.getHomePage());
+    type(By.name("firstname"),contactData.getFirstName());
+    type(By.name("middlename"),contactData.getMiddleName());
+    type(By.name("lastname"),contactData.getLastName());
+    type(By.name("nickname"),contactData.getNickName());
+    type(By.name("title"),contactData.getTitle());
+    type(By.name("company"),contactData.getCompanyName());
+    type(By.name("address"),contactData.getAddressName());
+    type(By.name("home"),contactData.getHomePhone());
+    type(By.name("mobile"),contactData.getMobilePhone());
+    type(By.name("work"),contactData.getWorkName());
+    type(By.name("fax"),contactData.getFaxPhone());
+    type(By.name("email"),contactData.getEmail_one());
+    type(By.name("homepage"),contactData.getHomePage());
   }
 
   public void initContactCreation() {
-    wd.findElement(By.linkText("add new")).click();
+    click(By.linkText("add new"));
   }
 }
