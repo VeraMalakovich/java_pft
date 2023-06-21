@@ -10,8 +10,12 @@ public class ContactHelper extends BaseHelper{
     super(wd);
   }
 
-  public void goToHomePage() {
+  public void returnToHomePage() {
     click(By.linkText("home page"));
+  }
+
+  public void goToHomePage() {
+    click(By.linkText("home"));
   }
 
   public void submitContactCreation() {
@@ -36,5 +40,26 @@ public class ContactHelper extends BaseHelper{
 
   public void initContactCreation() {
     click(By.linkText("add new"));
+  }
+
+  public void selectContact() {
+    click(By.name("selected[]"));
+  }
+
+  public void deleteSelectedContact() {
+    click(By.xpath("//input[@value='Delete']"));
+    confirmContactDeletion();
+  }
+
+  public void confirmContactDeletion() {
+    wd.switchTo().alert().accept();
+  }
+
+  public void initContactModification() {
+    click(By.xpath("//img[@alt='Edit']"));
+  }
+
+  public void submitContactModification() {
+    click(By.xpath("//input[22]"));
   }
 }
