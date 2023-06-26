@@ -1,8 +1,10 @@
 package ru.stqa.pft.addressbook.appmanager;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.support.ui.Select;
+import org.testng.Assert;
 import ru.stqa.pft.addressbook.model.ContactData;
 
 public class ContactHelper extends BaseHelper{
@@ -23,20 +25,26 @@ public class ContactHelper extends BaseHelper{
     click(By.xpath("//div[@id='content']/form/input[21]"));
   }
 
-  public void fillContactForm(ContactData contactData) {
-    type(By.name("firstname"),contactData.getFirstName());
-    type(By.name("middlename"),contactData.getMiddleName());
-    type(By.name("lastname"),contactData.getLastName());
-    type(By.name("nickname"),contactData.getNickName());
-    type(By.name("title"),contactData.getTitle());
-    type(By.name("company"),contactData.getCompanyName());
-    type(By.name("address"),contactData.getAddressName());
-    type(By.name("home"),contactData.getHomePhone());
-    type(By.name("mobile"),contactData.getMobilePhone());
-    type(By.name("work"),contactData.getWorkName());
-    type(By.name("fax"),contactData.getFaxPhone());
-    type(By.name("email"),contactData.getEmail_one());
-    type(By.name("homepage"),contactData.getHomePage());
+  public void fillContactForm(ContactData contactData, boolean creation) {
+    type(By.name("firstname"), contactData.getFirstName());
+    type(By.name("middlename"), contactData.getMiddleName());
+    type(By.name("lastname"), contactData.getLastName());
+    type(By.name("nickname"), contactData.getNickName());
+    type(By.name("title"), contactData.getTitle());
+    type(By.name("company"), contactData.getCompanyName());
+    type(By.name("address"), contactData.getAddressName());
+    type(By.name("home"), contactData.getHomePhone());
+    type(By.name("mobile"), contactData.getMobilePhone());
+    type(By.name("work"), contactData.getWorkName());
+    type(By.name("fax"), contactData.getFaxPhone());
+    type(By.name("email"), contactData.getEmail_one());
+    type(By.name("homepage"), contactData.getHomePage());
+
+    if (creation) {
+      new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroup());
+    } else {
+      Assert.assertFalse(isElementPresent(By.name("new_group")));
+    }
   }
 
   public void initContactCreation() {
