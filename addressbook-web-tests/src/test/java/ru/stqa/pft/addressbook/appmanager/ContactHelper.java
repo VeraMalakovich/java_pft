@@ -17,10 +17,6 @@ public class ContactHelper extends BaseHelper{
     click(By.linkText("home page"));
   }
 
-  public void goToHomePage() {
-    click(By.linkText("home"));
-  }
-
   public void submitContactCreation() {
     click(By.xpath("//div[@id='content']/form/input[21]"));
   }
