@@ -38,7 +38,11 @@ public class ContactHelper extends BaseHelper{
     type(By.name("homepage"), contactData.getHomePage());
 
     if (creation) {
-      new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroup());
+      try {
+        selectByText(By.name("new_group"), contactData.getGroup());
+      } catch (Exception NoSuchElementException) {
+        selectByIndex(By.name("new_group"), 0);
+      }
     } else {
       Assert.assertFalse(isElementPresent(By.name("new_group")));
     }
@@ -77,6 +81,6 @@ public class ContactHelper extends BaseHelper{
   }
 
   public boolean isThereAContact() {
-    return !isElementPresent(By.name("selected[]"));
+    return isElementPresent(By.name("selected[]"));
   }
 }
