@@ -26,6 +26,10 @@ public class GroupData {
     return id;
   }
 
+  public void setId(int id) {
+    this.id = id;
+  }
+
   public String getName() {
     return name;
   }
@@ -46,20 +50,32 @@ public class GroupData {
             '}';
   }
 
-  @Override
+  /*@Override //у меня такой equals() сгенерировался
   public boolean equals(Object o) {
     if (this == o) return true;
     if (o == null || getClass() != o.getClass()) return false;
     GroupData groupData = (GroupData) o;
     return id == groupData.id && Objects.equals(name, groupData.name);
+  }*/
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (o == null || getClass() != o.getClass()) return false;
+    GroupData groupData = (GroupData) o;
+    if (id != groupData.id) return false;
+    return Objects.equals(name, groupData.name);
   }
 
-  @Override
+  /*@Override //у меня такой hashCode() сгенерировался
   public int hashCode() {
     return Objects.hash(id, name);
+  }*/
+  @Override
+  public int hashCode() {
+    int result = id;
+    result = 31 * result + (name != null ? name.hashCode() : 0);
+    return result;
   }
 
-  public void setId(int id) {
-    this.id = id;
-  }
+
 }
