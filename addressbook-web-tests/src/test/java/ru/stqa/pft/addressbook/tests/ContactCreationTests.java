@@ -8,7 +8,7 @@ import org.testng.Assert;
 public class ContactCreationTests extends TestBase {
   @Test
   public void testContactCreationTests() {
-    app.getContactHelper().initContactCreation();
+    app.getNavigationHelper().goToHomePage();
     List<ContactData> before = app.getContactHelper().getContactList();
     ContactData contact = new ContactData("Vera", "Anatolevna", "Malakovich",
             "nickName", "Title", "companyName", "addressName", "homePhone",
