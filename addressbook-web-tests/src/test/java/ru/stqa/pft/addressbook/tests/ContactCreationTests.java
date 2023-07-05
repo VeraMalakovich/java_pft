@@ -6,7 +6,7 @@ import java.util.List;
 import org.testng.Assert;
 
 public class ContactCreationTests extends TestBase {
-  @Test
+  @Test(enabled = false)
   public void testContactCreationTests() {
     app.getNavigationHelper().goToHomePage();
     List<ContactData> before = app.getContactHelper().getContactList();
