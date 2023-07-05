@@ -3,12 +3,17 @@ package ru.stqa.pft.addressbook.appmanager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import ru.stqa.pft.addressbook.model.ContactData;
 import ru.stqa.pft.addressbook.model.GroupData;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Comparator;
 
 public class ContactHelper extends BaseHelper{
+  public final Comparator<? super ContactData> byId = Comparator.comparingInt(ContactData::getId);
 
   public ContactHelper(WebDriver wd)  {
     super(wd);
@@ -65,8 +70,8 @@ public class ContactHelper extends BaseHelper{
     wd.switchTo().alert().accept();
   }
 
-  public void initContactModification() {
-    click(By.xpath("//img[@alt='Edit']"));
+  public void initContactModification(int index) {
+    wd.findElements(By.xpath("//img[@alt='Edit']")).get(index).click();
   }
 
   public void submitContactModification() {
@@ -81,6 +86,24 @@ public class ContactHelper extends BaseHelper{
   }
 
   public boolean isThereAContact() {
-    return isElementPresent(By.name("selected[]"));
+    return isElementPresent(By.name("selected[]"));//!
+  }
+
+  public List<ContactData> getContactList() {
+    List<ContactData> contacts = new ArrayList<>();
+    List<WebElement> contactElements = wd.findElements(By.cssSelector("tr"));
+    contactElements.remove(0);
+
+    for (WebElement element: contactElements) {
+      List<WebElement> contactDataElements = element.findElements(By.cssSelector("td"));
+      int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
+      String lastName = contactDataElements.get(1).getText();
+      String firstName = contactDataElements.get(2).getText();
+
+      ContactData contact = new ContactData(id, firstName, lastName);
+      contacts.add(contact);
+    }
+
+    return contacts;
   }
 }

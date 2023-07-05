@@ -1,6 +1,9 @@
 package ru.stqa.pft.addressbook.model;
 
+import java.util.Objects;
+
 public class ContactData {
+  private int id;
   private final String firstName;
   private final String middleName;
   private final String lastName;
@@ -19,6 +22,7 @@ public class ContactData {
   public ContactData(String firstName, String middleName, String lastName, String nickName, String title, String companyName,
                      String addressName, String homePhone, String mobilePhone, String workName, String faxPhone, String email_one,
                      String group, String homePage) {
+    this.id = 0; //Integer.MAX_VALUE
     this.firstName = firstName;
     this.middleName = middleName;
     this.lastName = lastName;
@@ -33,6 +37,32 @@ public class ContactData {
     this.email_one = email_one;
     this.group = group;
     this.homePage = homePage;
+  }
+
+  public ContactData(int id, String firstname, String lastname) {
+    this.id = id;
+    this.firstName = firstname;
+    this.lastName = lastname;
+    this.middleName = null;
+    this.nickName = null;
+    this.title = null;
+    this.companyName = null;
+    this.addressName = null;
+    this.homePhone = null;
+    this.mobilePhone = null;
+    this.workName = null;
+    this.faxPhone = null;
+    this.email_one = null;
+    this.group = null;
+    this.homePage = null;
+  }
+
+  public int getId() {
+    return id;
+  }
+
+  public void setId(int id) {
+    this.id = id;
   }
 
   public String getFirstName() {
@@ -89,5 +119,34 @@ public class ContactData {
 
   public String getGroup() {
     return group;
+  }
+
+  @Override
+  public String toString() {
+    return "ContactData{" +
+            "id=" + id +
+            ", firstname='" + firstName + '\'' +
+            ", lastname='" + lastName + '\'' +
+            '}';
+  }
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (o == null || getClass() != o.getClass()) return false;
+
+    ContactData that = (ContactData) o;
+
+    if (id != that.id) return false;
+    if (!Objects.equals(firstName, that.firstName)) return false;
+    return Objects.equals(lastName, that.lastName);
+  }
+
+  @Override
+  public int hashCode() {
+    int result = id;
+    result = 31 * result + (firstName != null ? firstName.hashCode() : 0);
+    result = 31 * result + (lastName != null ? lastName.hashCode() : 0);
+    return result;
   }
 }
