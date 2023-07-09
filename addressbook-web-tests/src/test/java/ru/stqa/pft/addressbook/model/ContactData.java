@@ -3,7 +3,7 @@ package ru.stqa.pft.addressbook.model;
 import java.util.Objects;
 
 public class ContactData {
-  private int id;
+  private int id = Integer.MAX_VALUE;;
   private String firstName;
   private String middleName;
   private String lastName;
@@ -97,6 +97,62 @@ public class ContactData {
   public ContactData withNewGroup(String newGroup) {
     this.newGroup = newGroup;
     return this;
+  }
+
+  public String getFirstName() {
+    return firstName;
+  }
+
+  public String getMiddleName() {
+    return middleName;
+  }
+
+  public String getLastName() {
+    return lastName;
+  }
+
+  public String getNickName() {
+    return nickName;
+  }
+
+  public String getTitle() {
+    return title;
+  }
+
+  public String getCompanyName() {
+    return company;
+  }
+
+  public String getAddressName() {
+    return addressName;
+  }
+
+  public String getHomePhone() {
+    return homePhone;
+  }
+
+  public String getMobilePhone() {
+    return mobilePhone;
+  }
+
+  public String getWorkPhone() {
+    return workPhone;
+  }
+
+  public String getFaxPhone() {
+    return faxPhone;
+  }
+
+  public String getEmail() {
+    return email;
+  }
+
+  public String getHomePage() {
+    return homePage;
+  }
+
+  public String getNewGroup() {
+    return newGroup;
   }
 
   @Override

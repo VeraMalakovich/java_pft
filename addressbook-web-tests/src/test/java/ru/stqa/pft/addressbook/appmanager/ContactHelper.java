@@ -5,10 +5,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import ru.stqa.pft.addressbook.model.ContactData;
-
-import java.util.ArrayList;
+import ru.stqa.pft.addressbook.model.Contacts;
 import java.util.List;
-import java.util.Set;
 
 public class ContactHelper extends BaseHelper{
 
@@ -25,23 +23,23 @@ public class ContactHelper extends BaseHelper{
   }
 
   public void fillContactForm(ContactData contactData, boolean creation) {
-    type(By.name("firstname"), contactData.withFirstName());//get
-    type(By.name("middlename"), contactData.withMiddleName());
-    type(By.name("lastname"), contactData.withLastName());
-    type(By.name("nickname"), contactData.withNickName());
-    type(By.name("title"), contactData.withTitle());
-    type(By.name("company"), contactData.withCompany());
-    type(By.name("address"), contactData.withAddress());
-    type(By.name("home"), contactData.withHomePhone());
-    type(By.name("mobile"), contactData.withMobilePhone());
-    type(By.name("work"), contactData.withWorkPhone());
-    type(By.name("fax"), contactData.withFaxPhone());
-    type(By.name("email"), contactData.withEmail());
-    type(By.name("homepage"), contactData.withHomePage());
+    type(By.name("firstname"), contactData.getFirstName());
+    type(By.name("middlename"), contactData.getMiddleName());
+    type(By.name("lastname"), contactData.getLastName());
+    type(By.name("nickname"), contactData.getNickName());
+    type(By.name("title"), contactData.getTitle());
+    type(By.name("company"), contactData.getCompanyName());
+    type(By.name("address"), contactData.getAddressName());
+    type(By.name("home"), contactData.getHomePhone());
+    type(By.name("mobile"), contactData.getMobilePhone());
+    type(By.name("work"), contactData.getWorkPhone());
+    type(By.name("fax"), contactData.getFaxPhone());
+    type(By.name("email"), contactData.getEmail());
+    type(By.name("homepage"), contactData.getHomePage());
 
     if (creation) {
       try {
-        selectByText(By.name("new_group"), contactData.withNewGroup());
+        selectByText(By.name("new_group"), contactData.getNewGroup());
       } catch (Exception NoSuchElementException) {
         selectByIndex(By.name("new_group"), 0);
       }
@@ -67,8 +65,8 @@ public class ContactHelper extends BaseHelper{
     wd.switchTo().alert().accept();
   }
 
-  public void initContactModification() {
-    click(By.xpath("//img[@alt='Edit']"));
+  public void initContactModification(int id) {
+    wd.findElement(By.cssSelector("a[href='edit.php?id="+ id +"']")).click();
   }
 
   public void submitContactModification() {
@@ -82,8 +80,8 @@ public class ContactHelper extends BaseHelper{
     returnToHomePage();
   }
 
-  public Set<ContactData> all() {
-    Set<ContactData> contacts = HashSet<>();
+  public Contacts all() {
+    Contacts contacts = new Contacts();
     List<WebElement> contactElements = wd.findElements(By.cssSelector("tr"));
     contactElements.remove(0);
 
@@ -100,8 +98,7 @@ public class ContactHelper extends BaseHelper{
   }
 
   public void modify(ContactData contact) {
-    selectContactById(contact.getId());
-    initContactModification();
+    initContactModification(contact.getId());
     fillContactForm(contact, false);
     submitContactModification();
     returnToHomePage();
