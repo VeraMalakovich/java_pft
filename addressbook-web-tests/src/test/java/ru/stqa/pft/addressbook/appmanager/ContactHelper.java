@@ -6,6 +6,8 @@ import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import ru.stqa.pft.addressbook.model.ContactData;
 import ru.stqa.pft.addressbook.model.Contacts;
+import ru.stqa.pft.addressbook.model.Groups;
+
 import java.util.List;
 
 public class ContactHelper extends BaseHelper{
@@ -77,11 +79,33 @@ public class ContactHelper extends BaseHelper{
     initContactCreation();
     fillContactForm(contactData, true);
     submitContactCreation();
+    contactCache = null;
     returnToHomePage();
   }
 
+  public void modify(ContactData contact) {
+    initContactModification(contact.getId());
+    fillContactForm(contact, false);
+    submitContactModification();
+    contactCache = null;
+    returnToHomePage();
+  }
+
+  public void delete(ContactData contact) {
+    selectContactById(contact.getId());
+    deleteSelectedContact();
+    contactCache = null;
+    returnToHomePage();
+  }
+
+  private Contacts contactCache = null;
+
   public Contacts all() {
-    Contacts contacts = new Contacts();
+    if (contactCache != null) {
+      return new Contacts(contactCache);
+    }
+
+    contactCache = new Contacts();
     List<WebElement> contactElements = wd.findElements(By.cssSelector("tr"));
     contactElements.remove(0);
 
@@ -92,21 +116,8 @@ public class ContactHelper extends BaseHelper{
       String firstName = contactDataElements.get(2).getText();
 
       ContactData contact = new ContactData().withId(id).withFirstName(firstName).withLastName(lastName);
-      contacts.add(contact);
+      contactCache.add(contact);
     }
-    return contacts;
-  }
-
-  public void modify(ContactData contact) {
-    initContactModification(contact.getId());
-    fillContactForm(contact, false);
-    submitContactModification();
-    returnToHomePage();
-  }
-
-  public void delete(ContactData contact) {
-    selectContactById(contact.getId());
-    deleteSelectedContact();//
-    //returnToHomePage();??
+    return new Contacts(contactCache);
   }
 }
