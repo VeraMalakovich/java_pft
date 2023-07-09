@@ -21,19 +21,13 @@ public class ContactDeletionTests extends TestBase{
   }
 
   @Test
-  public void testContactDeletion() throws InterruptedException {
+  public void testContactDeletion() {
     Contacts before = app.contact().all();
-    //System.out.println("before.size()0:" + before.size());
     ContactData deletedContact = before.iterator().next();
-    //System.out.println("before.size()1:" + before.size());
     app.contact().delete(deletedContact);
-    //System.out.println("before.size()2:" + before.size());
     app.goTo().homePage();
-    Thread.sleep(500);
+    assertThat(app.contact().count(), equalTo(before.size() - 1));
     Contacts after = app.contact().all();
-    //System.out.println("after.size():" + after.size());
-    //System.out.println("before.size()3:" + before.size());
-    assertThat(after.size(), equalTo(before.size() - 1));
     assertThat(after, equalTo(before.without(deletedContact)));
   }
 }

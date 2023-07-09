@@ -98,6 +98,10 @@ public class ContactHelper extends BaseHelper{
     returnToHomePage();
   }
 
+  public int count() {
+    return wd.findElements(By.name("selected[]")).size();
+  }
+
   private Contacts contactCache = null;
 
   public Contacts all() {
