@@ -4,121 +4,99 @@ import java.util.Objects;
 
 public class ContactData {
   private int id;
-  private final String firstName;
-  private final String middleName;
-  private final String lastName;
-  private final String nickName;
-  private final String title;
-  private final String companyName;
-  private final String addressName;
-  private final String homePhone;
-  private final String mobilePhone;
-  private final String workName;
-  private final String faxPhone;
-  private final String email_one;
-  private final String group;
-  private final String homePage;
+  private String firstName;
+  private String middleName;
+  private String lastName;
+  private String nickName;
+  private String title;
+  private String company;
+  private String addressName;
+  private String homePhone;
+  private String mobilePhone;
+  private String workPhone;
+  private String faxPhone;
+  private String email;
+  private String newGroup;
+  private String homePage;
 
-  public ContactData(String firstName, String middleName, String lastName, String nickName, String title, String companyName,
-                     String addressName, String homePhone, String mobilePhone, String workName, String faxPhone, String email_one,
-                     String group, String homePage) {
-    this.id = 0; //Integer.MAX_VALUE
-    this.firstName = firstName;
-    this.middleName = middleName;
-    this.lastName = lastName;
-    this.nickName = nickName;
-    this.title = title;
-    this.companyName = companyName;
-    this.addressName = addressName;
-    this.homePhone = homePhone;
-    this.mobilePhone = mobilePhone;
-    this.workName = workName;
-    this.faxPhone = faxPhone;
-    this.email_one = email_one;
-    this.group = group;
-    this.homePage = homePage;
-  }
-
-  public ContactData(int id, String firstname, String lastname) {
-    this.id = id;
-    this.firstName = firstname;
-    this.lastName = lastname;
-    this.middleName = null;
-    this.nickName = null;
-    this.title = null;
-    this.companyName = null;
-    this.addressName = null;
-    this.homePhone = null;
-    this.mobilePhone = null;
-    this.workName = null;
-    this.faxPhone = null;
-    this.email_one = null;
-    this.group = null;
-    this.homePage = null;
-  }
 
   public int getId() {
     return id;
   }
 
-  public void setId(int id) {
+  public ContactData withId(int id) {
     this.id = id;
+    return this;
   }
 
-  public String getFirstName() {
-    return firstName;
+  public ContactData withFirstName(String firstName) {
+    this.firstName = firstName;
+    return this;
   }
 
-  public String getMiddleName() {
-    return middleName;
+  public ContactData withMiddleName(String middleName) {
+    this.middleName = middleName;
+    return this;
   }
 
-  public String getLastName() {
-    return lastName;
+  public ContactData withLastName(String lastName) {
+    this.lastName = lastName;
+    return this;
   }
 
-  public String getNickName() {
-    return nickName;
+  public ContactData withNickName(String nickName) {
+    this.nickName = nickName;
+    return this;
   }
 
-  public String getTitle() {
-    return title;
+  public ContactData withTitle(String title) {
+    this.title = title;
+    return this;
   }
 
-  public String getCompanyName() {
-    return companyName;
+  public ContactData withCompany(String company) {
+    this.company = company;
+    return this;
   }
 
-  public String getAddressName() {
-    return addressName;
+  public ContactData withAddress(String addressName) {
+    this.addressName = addressName;
+    return this;
   }
 
-  public String getHomePhone() {
-    return homePhone;
+  public ContactData withHomePhone(String homePhone) {
+    this.homePhone = homePhone;
+    return this;
   }
 
-  public String getMobilePhone() {
-    return mobilePhone;
+  public ContactData withMobilePhone(String mobilePhone) {
+    this.mobilePhone = mobilePhone;
+    return this;
   }
 
-  public String getWorkName() {
-    return workName;
+  public ContactData withWorkPhone(String workPhone) {
+    this.workPhone = workPhone;
+    return this;
   }
 
-  public String getFaxPhone() {
-    return faxPhone;
+  public ContactData withFaxPhone(String faxPhone) {
+    this.faxPhone = faxPhone;
+    return this;
   }
 
-  public String getEmail_one() {
-    return email_one;
+  public ContactData withEmail(String email) {
+    this.email = email;
+    return this;
   }
 
-  public String getHomePage() {
-    return homePage;
+  public ContactData withHomePage(String homePage) {
+    this.homePage = homePage;
+    return this;
   }
 
-  public String getGroup() {
-    return group;
+  public ContactData withNewGroup(String newGroup) {
+    this.newGroup = newGroup;
+    return this;
   }
 
   @Override

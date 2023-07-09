@@ -8,10 +8,9 @@ import ru.stqa.pft.addressbook.model.ContactData;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Comparator;
+import java.util.Set;
 
 public class ContactHelper extends BaseHelper{
-  public final Comparator<? super ContactData> byId = Comparator.comparingInt(ContactData::getId);
 
   public ContactHelper(WebDriver wd)  {
     super(wd);
@@ -26,23 +25,23 @@ public class ContactHelper extends BaseHelper{
   }
 
   public void fillContactForm(ContactData contactData, boolean creation) {
-    type(By.name("firstname"), contactData.getFirstName());
-    type(By.name("middlename"), contactData.getMiddleName());
-    type(By.name("lastname"), contactData.getLastName());
-    type(By.name("nickname"), contactData.getNickName());
-    type(By.name("title"), contactData.getTitle());
-    type(By.name("company"), contactData.getCompanyName());
-    type(By.name("address"), contactData.getAddressName());
-    type(By.name("home"), contactData.getHomePhone());
-    type(By.name("mobile"), contactData.getMobilePhone());
-    type(By.name("work"), contactData.getWorkName());
-    type(By.name("fax"), contactData.getFaxPhone());
-    type(By.name("email"), contactData.getEmail_one());
-    type(By.name("homepage"), contactData.getHomePage());
+    type(By.name("firstname"), contactData.withFirstName());//get
+    type(By.name("middlename"), contactData.withMiddleName());
+    type(By.name("lastname"), contactData.withLastName());
+    type(By.name("nickname"), contactData.withNickName());
+    type(By.name("title"), contactData.withTitle());
+    type(By.name("company"), contactData.withCompany());
+    type(By.name("address"), contactData.withAddress());
+    type(By.name("home"), contactData.withHomePhone());
+    type(By.name("mobile"), contactData.withMobilePhone());
+    type(By.name("work"), contactData.withWorkPhone());
+    type(By.name("fax"), contactData.withFaxPhone());
+    type(By.name("email"), contactData.withEmail());
+    type(By.name("homepage"), contactData.withHomePage());
 
     if (creation) {
       try {
-        selectByText(By.name("new_group"), contactData.getGroup());
+        selectByText(By.name("new_group"), contactData.withNewGroup());
       } catch (Exception NoSuchElementException) {
         selectByIndex(By.name("new_group"), 0);
       }
@@ -55,8 +54,8 @@ public class ContactHelper extends BaseHelper{
     click(By.linkText("add new"));
   }
 
-  public void selectContact(int index) {
-    wd.findElements(By.name("selected[]")).get(index).click();
+  public void selectContactById(int id) {
+    wd.findElement(By.cssSelector("input[value='"+ id +"']")).click();
   }
 
   public void deleteSelectedContact() {
@@ -68,8 +67,8 @@ public class ContactHelper extends BaseHelper{
     wd.switchTo().alert().accept();
   }
 
-  public void initContactModification(int index) {
-    wd.findElements(By.xpath("//img[@alt='Edit']")).get(index).click();
+  public void initContactModification() {
+    click(By.xpath("//img[@alt='Edit']"));
   }
 
   public void submitContactModification() {
@@ -83,8 +82,8 @@ public class ContactHelper extends BaseHelper{
     returnToHomePage();
   }
 
-  public List<ContactData> list() {
-    List<ContactData> contacts = new ArrayList<>();
+  public Set<ContactData> all() {
+    Set<ContactData> contacts = HashSet<>();
     List<WebElement> contactElements = wd.findElements(By.cssSelector("tr"));
     contactElements.remove(0);
 
@@ -94,22 +93,22 @@ public class ContactHelper extends BaseHelper{
       String lastName = contactDataElements.get(1).getText();
       String firstName = contactDataElements.get(2).getText();
 
-      ContactData contact = new ContactData(id, firstName, lastName);
+      ContactData contact = new ContactData().withId(id).withFirstName(firstName).withLastName(lastName);
       contacts.add(contact);
     }
-
     return contacts;
   }
 
-  public void modify(int index, ContactData contact) {
-    initContactModification(index);
+  public void modify(ContactData contact) {
+    selectContactById(contact.getId());
+    initContactModification();
     fillContactForm(contact, false);
     submitContactModification();
     returnToHomePage();
   }
 
-  public void delete(int index) {
-    selectContact(index);
+  public void delete(ContactData contact) {
+    selectContactById(contact.getId());
     deleteSelectedContact();//
     //returnToHomePage();??
   }
