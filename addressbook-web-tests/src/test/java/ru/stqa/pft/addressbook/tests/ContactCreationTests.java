@@ -8,20 +8,18 @@ import org.testng.Assert;
 public class ContactCreationTests extends TestBase {
   @Test(enabled = false)
   public void testContactCreationTests() {
-    app.goTo().goToHomePage();
-    List<ContactData> before = app.getContactHelper().getContactList();
+    app.goTo().homePage();
+    List<ContactData> before = app.contact().list();
     ContactData contact = new ContactData("Vera", "Anatolevna", "Malakovich",
             "nickName", "Title", "companyName", "addressName", "homePhone",
             "mobilePhone", "workName", "faxPhone", "email1", "test1",
             "homePage");
-    app.getContactHelper().createContact(contact);
-    List<ContactData> after = app.getContactHelper().getContactList();
+    app.contact().create(contact);
+    List<ContactData> after = app.contact().list();
     Assert.assertEquals(after.size(), before.size() + 1);
 
-    contact.setId(after.stream().max(app.getContactHelper().byId).get().getId());
+    contact.setId(after.stream().max(app.contact().byId).get().getId());
     before.add(contact);
-    before.sort(app.getContactHelper().byId);
-    after.sort(app.getContactHelper().byId);
     Assert.assertEquals(before, after);
   }
 }

@@ -1,13 +1,11 @@
 package ru.stqa.pft.addressbook.appmanager;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import ru.stqa.pft.addressbook.model.ContactData;
-import ru.stqa.pft.addressbook.model.GroupData;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Comparator;
@@ -57,8 +55,8 @@ public class ContactHelper extends BaseHelper{
     click(By.linkText("add new"));
   }
 
-  public void selectContact() {
-    click(By.name("selected[]"));
+  public void selectContact(int index) {
+    wd.findElements(By.name("selected[]")).get(index).click();
   }
 
   public void deleteSelectedContact() {
@@ -78,18 +76,14 @@ public class ContactHelper extends BaseHelper{
     click(By.xpath("//input[22]"));
   }
 
-  public void createContact(ContactData contactData) {
+  public void create(ContactData contactData) {
     initContactCreation();
     fillContactForm(contactData, true);
     submitContactCreation();
     returnToHomePage();
   }
 
-  public boolean isThereAContact() {
-    return isElementPresent(By.name("selected[]"));//!
-  }
-
-  public List<ContactData> getContactList() {
+  public List<ContactData> list() {
     List<ContactData> contacts = new ArrayList<>();
     List<WebElement> contactElements = wd.findElements(By.cssSelector("tr"));
     contactElements.remove(0);
@@ -105,5 +99,18 @@ public class ContactHelper extends BaseHelper{
     }
 
     return contacts;
+  }
+
+  public void modify(int index, ContactData contact) {
+    initContactModification(index);
+    fillContactForm(contact, false);
+    submitContactModification();
+    returnToHomePage();
+  }
+
+  public void delete(int index) {
+    selectContact(index);
+    deleteSelectedContact();//
+    //returnToHomePage();??
   }
 }
