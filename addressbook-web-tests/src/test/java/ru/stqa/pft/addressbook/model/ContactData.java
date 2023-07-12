@@ -16,9 +16,86 @@ public class ContactData {
   private String workPhone;
   private String faxPhone;
   private String email;
+  private String email2;
+  private String email3;
+  private String allEmails;
   private String newGroup;
+  private String address2;
+  private String homePhone2;
   private String homePage;
   private String allPhones;
+
+  public String getFirstName() {
+    return firstName;
+  }
+
+  public String getMiddleName() {
+    return middleName;
+  }
+
+  public String getLastName() {
+    return lastName;
+  }
+
+  public String getNickName() {
+    return nickName;
+  }
+
+  public String getTitle() {
+    return title;
+  }
+
+  public String getCompanyName() {
+    return company;
+  }
+
+  public String getAddressName() {
+    return addressName;
+  }
+
+  public String getHomePhone() {
+    return homePhone;
+  }
+
+  public String getMobilePhone() {
+    return mobilePhone;
+  }
+
+  public String getWorkPhone() {
+    return workPhone;
+  }
+
+  public String getFaxPhone() {
+    return faxPhone;
+  }
+
+  public String getEmail() {
+    return email;
+  }
+
+  public String getSecondEmail() {
+    return email2;
+  }
+
+  public String getThirdEmail() {
+    return email3;
+  }
+
+  public String getNewGroup() {
+    return newGroup;
+  }
+
+  public String getSecondAddress() {
+    return address2;
+  }
+
+  public String getSecondHomePhone() {
+    return homePhone2;
+  }
+
+  public String getHomePage() {
+    return homePage;
+  }
 
   public String getAllPhones() {
     return allPhones;
@@ -26,6 +103,15 @@ public class ContactData {
 
   public ContactData withAllPhones(String allPhones) {
     this.allPhones = allPhones;
+    return this;
+  }
+
+  public String getAllEmails() {
+    return allEmails;
+  }
+
+  public ContactData withAllEmails(String allEmails) {
+    this.allEmails = allEmails;
     return this;
   }
 
@@ -98,6 +184,16 @@ public class ContactData {
     return this;
   }
 
+  public ContactData withEmail2(String email2) {
+    this.email2 = email2;
+    return this;
+  }
+
+  public ContactData withEmail3(String email3) {
+    this.email3 = email3;
+    return this;
+  }
+
   public ContactData withHomePage(String homePage) {
     this.homePage = homePage;
     return this;
@@ -108,61 +204,16 @@ public class ContactData {
     return this;
   }
 
-  public String getFirstName() {
-    return firstName;
+  public ContactData withSecondAddress(String address2) {
+    this.address2 = address2;
+    return this;
   }
 
-  public String getMiddleName() {
-    return middleName;
+  public ContactData withSecondHomePhone(String homePhone2) {
+    this.homePhone2 = homePhone2;
+    return this;
   }
 
-  public String getLastName() {
-    return lastName;
-  }
-
-  public String getNickName() {
-    return nickName;
-  }
-
-  public String getTitle() {
-    return title;
-  }
-
-  public String getCompanyName() {
-    return company;
-  }
-
-  public String getAddressName() {
-    return addressName;
-  }
-
-  public String getHomePhone() {
-    return homePhone;
-  }
-
-  public String getMobilePhone() {
-    return mobilePhone;
-  }
-
-  public String getWorkPhone() {
-    return workPhone;
-  }
-
-  public String getFaxPhone() {
-    return faxPhone;
-  }
-
-  public String getEmail() {
-    return email;
-  }
-
-  public String getHomePage() {
-    return homePage;
-  }
-
-  public String getNewGroup() {
-    return newGroup;
-  }
 
   @Override
   public String toString() {
