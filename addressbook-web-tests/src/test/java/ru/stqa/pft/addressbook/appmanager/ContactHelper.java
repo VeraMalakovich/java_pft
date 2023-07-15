@@ -39,7 +39,6 @@ public class ContactHelper extends BaseHelper{
     type(By.name("email2"), contactData.getSecondEmail());
     type(By.name("email3"), contactData.getThirdEmail());
     type(By.name("homepage"), contactData.getHomePage());
-    System.out.println(contactData.getPhoto().getAbsolutePath());
     attach(By.name("photo"), contactData.getPhoto());
 
     if (creation) {
