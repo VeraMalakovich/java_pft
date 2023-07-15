@@ -4,6 +4,9 @@ import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.ContactData;
 import ru.stqa.pft.addressbook.model.Contacts;
 import org.testng.annotations.BeforeMethod;
+
+import java.io.File;
+
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
 
@@ -12,11 +15,12 @@ public class ContactModificationTests extends TestBase{
   @BeforeMethod
   public void ensurePreconditions() {
     app.goTo().homePage();
+    File photo = new File("src/test/resources/avatar_to_change.jpg");
     if (app.contact().all().size() == 0) {
       app.contact().create(new ContactData().withFirstName("Vera").withMiddleName("Anatolevna").withLastName("Malakovich")
               .withNickName("nickName").withTitle("Title").withCompany("companyName").withAddress("addressName")
               .withHomePhone("homePhone").withMobilePhone("mobilePhone").withWorkPhone("workPhone").withFaxPhone("faxPhone")
-              .withEmail("email1").withNewGroup("test1").withHomePage("homePage"));
+              .withEmail("email1").withNewGroup("test1").withHomePage("homePage").withPhoto(photo));
     }
   }
 

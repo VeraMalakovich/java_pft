@@ -6,6 +6,8 @@ import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.Select;
 
+import java.io.File;
+
 public class BaseHelper {
   protected WebDriver wd;
 
@@ -28,14 +30,20 @@ public class BaseHelper {
     }
   }
 
+  protected void attach(By locator, File photo) {
+    if (photo != null) {
+      wd.findElement(locator).sendKeys(photo.getAbsolutePath());
+    }
+  }
+
   protected void selectByText(By locator, String text) {
     click(locator);
     new Select(wd.findElement(locator)).selectByVisibleText(text);
   }
 
-  protected void selectByIndex(By locator, int index) {
+  protected void selectDefault(By locator) {
     click(locator);
-    new Select(wd.findElement(locator)).selectByIndex(index);
+    new Select(wd.findElement(locator)).selectByIndex(0);
   }
 
   private boolean isAlertPresent() {

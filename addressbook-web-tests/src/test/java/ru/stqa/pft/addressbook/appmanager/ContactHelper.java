@@ -6,7 +6,6 @@ import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import ru.stqa.pft.addressbook.model.ContactData;
 import ru.stqa.pft.addressbook.model.Contacts;
-import ru.stqa.pft.addressbook.model.Groups;
 
 import java.util.List;
 
@@ -40,12 +39,14 @@ public class ContactHelper extends BaseHelper{
     type(By.name("email2"), contactData.getSecondEmail());
     type(By.name("email3"), contactData.getThirdEmail());
     type(By.name("homepage"), contactData.getHomePage());
+    System.out.println(contactData.getPhoto().getAbsolutePath());
+    attach(By.name("photo"), contactData.getPhoto());
 
     if (creation) {
       try {
         selectByText(By.name("new_group"), contactData.getNewGroup());
       } catch (Exception NoSuchElementException) {
-        selectByIndex(By.name("new_group"), 0);
+        selectDefault(By.name("new_group"));
       }
     } else {
       Assert.assertFalse(isElementPresent(By.name("new_group")));
@@ -77,8 +78,6 @@ public class ContactHelper extends BaseHelper{
   public void submitContactModification() {
     click(By.xpath("//input[22]"));
   }
-
-
 
   public void create(ContactData contactData) {
     initContactCreation();

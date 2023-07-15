@@ -4,6 +4,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.ContactData;
 
+import java.io.File;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -16,11 +17,12 @@ public class ContactPhoneTest extends TestBase{
   @BeforeMethod
   public void ensurePreconditions() {
     app.goTo().homePage();
+    File photo = new File("src/test/resources/avatar.jpg");
     if (app.contact().all().size() == 0) {
       app.contact().create(new ContactData().withFirstName("Vera").withMiddleName("Anatolevna").withLastName("Malakovich")
               .withNickName("nickName").withTitle("Title").withCompany("companyName").withAddress("addressName")
               .withHomePhone("315-38-12").withMobilePhone("+375295789988").withWorkPhone("22 333 444").withFaxPhone("faxPhone")
-              .withEmail("email1").withNewGroup("test1").withHomePage("homePage"));
+              .withEmail("email1").withNewGroup("test1").withHomePage("homePage").withPhoto(photo));
     }
   }
 
