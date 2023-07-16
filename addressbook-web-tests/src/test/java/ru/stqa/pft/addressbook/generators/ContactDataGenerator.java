@@ -48,9 +48,9 @@ public class ContactDataGenerator implements JsonSerializer<File> {
     Gson gson = new GsonBuilder().setPrettyPrinting().registerTypeAdapter(File.class, new ContactDataGenerator())
             .excludeFieldsWithoutExposeAnnotation().create();
     String json = gson.toJson(contacts);
-    Writer writer = new FileWriter(file);
-    writer.write(json);
-    writer.close();
+    try (Writer writer = new FileWriter(file)) {
+      writer.write(json);
+    }
   }
 
   private List<ContactData> generateContacts(int count) {
