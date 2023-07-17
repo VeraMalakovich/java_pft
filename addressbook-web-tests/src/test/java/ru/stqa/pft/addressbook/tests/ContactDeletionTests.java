@@ -25,7 +25,7 @@ public class ContactDeletionTests extends TestBase{
   }
 
   @Test
-  public void testContactDeletion() {
+  public void testContactDeletion() throws InterruptedException {
     Contacts before = app.contact().all();
     ContactData deletedContact = before.iterator().next();
     app.contact().delete(deletedContact);
