@@ -67,6 +67,7 @@ public class ContactHelper extends BaseHelper{
 
   public void confirmContactDeletion() {
     wd.switchTo().alert().accept();
+    wd.findElement(By.cssSelector("div.msgbox"));
   }
 
   public void initContactModification(int id) {
@@ -98,7 +99,6 @@ public class ContactHelper extends BaseHelper{
     selectContactById(contact.getId());
     deleteSelectedContact();
     contactCache = null;
-    returnToHomePage();
   }
 
   public int count() {
