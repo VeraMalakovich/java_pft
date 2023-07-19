@@ -59,7 +59,7 @@ public class ContactInformationTests extends TestBase {
     }
 
     public static String cleanedAddress(String address) {
-      return address.replaceAll("\\s", "").replaceAll("\n", "");
+      return address.replaceAll("\n", "");
     }
 
     public static String cleanedEmails(String phone) {
