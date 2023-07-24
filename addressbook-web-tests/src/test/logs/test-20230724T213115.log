@@ -1,0 +1,12 @@
+21:31:16.072 [main] INFO  org.hibernate.Version -- HHH000412: Hibernate ORM core version 5.6.15.Final
+21:31:16.764 [main] INFO  o.h.annotations.common.Version -- HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+21:31:16.920 [main] WARN  o.hibernate.orm.connections.pooling -- HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+21:31:16.927 [main] INFO  o.hibernate.orm.connections.pooling -- HHH10001005: using driver [com.mysql.cj.jdbc.Driver] at URL [jdbc:mysql://localhost:3306/addressbook]
+21:31:16.928 [main] INFO  o.hibernate.orm.connections.pooling -- HHH10001001: Connection properties: {user=root, password=****}
+21:31:16.932 [main] INFO  o.hibernate.orm.connections.pooling -- HHH10001003: Autocommit mode: false
+21:31:16.937 [main] INFO  o.h.e.j.c.i.DriverManagerConnectionProviderImpl -- HHH000115: Hibernate connection pool size: 1 (min=1)
+21:31:17.175 [main] INFO  org.hibernate.dialect.Dialect -- HHH000400: Using dialect: org.hibernate.dialect.MySQLDialect
+21:31:18.144 [main] INFO  o.hibernate.orm.connections.access -- HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@44924587] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+21:31:18.298 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator -- HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+21:31:23.474 [main] INFO  r.s.pft.addressbook.tests.TestBase -- Start test testGroupModification with parameters: []
+21:31:26.200 [main] INFO  r.s.pft.addressbook.tests.TestBase -- Stop test testGroupModification

@@ -1,8 +1,0 @@
-23:26:43.063 [main] INFO  r.s.pft.addressbook.tests.TestBase -- Start test testBadGroupCreation
-23:26:46.051 [main] INFO  r.s.pft.addressbook.tests.TestBase -- Stop test testBadGroupCreation
-23:26:46.092 [main] INFO  r.s.pft.addressbook.tests.TestBase -- Start test testGroupCreation
-23:26:48.086 [main] INFO  r.s.pft.addressbook.tests.TestBase -- Stop test testGroupCreation
-23:26:48.087 [main] INFO  r.s.pft.addressbook.tests.TestBase -- Start test testGroupCreation
-23:26:50.026 [main] INFO  r.s.pft.addressbook.tests.TestBase -- Stop test testGroupCreation
-23:26:50.026 [main] INFO  r.s.pft.addressbook.tests.TestBase -- Start test testGroupCreation
-23:26:51.942 [main] INFO  r.s.pft.addressbook.tests.TestBase -- Stop test testGroupCreation
