@@ -1,9 +1,7 @@
 package ru.stqa.pft.addressbook.model;
 
 import com.google.gson.annotations.Expose;
-import com.thoughtworks.xstream.annotations.XStreamAlias;
 import org.hibernate.annotations.Type;
-
 import javax.persistence.*;
 import java.io.File;
 import java.util.Objects;
@@ -85,6 +83,7 @@ public class ContactData {
   @Expose
   @Column(name = "photo")
   @Type(type = "text")
+  @Transient
   private String photo;
 
   public String getFirstName() {
@@ -164,7 +163,11 @@ public class ContactData {
   }
 
   public File getPhoto() {
-    return new File (photo);
+    if (photo != null) {
+      return new File (photo);
+    } else {
+      return null;
+    }
   }
 
   public ContactData withPhoto(File photo) {

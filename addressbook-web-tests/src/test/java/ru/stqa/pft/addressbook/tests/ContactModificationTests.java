@@ -16,22 +16,27 @@ public class ContactModificationTests extends TestBase{
   public void ensurePreconditions() {
     app.goTo().homePage();
     File photo = new File("src/test/resources/avatar_to_change.jpg");
-    if (app.contact().all().size() == 0) {
-      app.contact().create(new ContactData().withFirstName("Vera").withMiddleName("Anatolevna").withLastName("Malakovich")
-              .withNickName("nickName").withTitle("Title").withCompany("companyName").withAddress("addressName")
-              .withHomePhone("homePhone").withMobilePhone("mobilePhone").withWorkPhone("workPhone").withFaxPhone("faxPhone")
-              .withEmail("email1").withNewGroup("test1").withHomePage("homePage").withPhoto(photo));
+    //if (app.contact().all().size() == 0) {
+    if (app.db().contacts().size() == 0) {
+      if (app.contact().all().size() == 0) {
+        app.contact().create(new ContactData().withFirstName("Vera").withMiddleName("Anatolevna").withLastName("Malakovich")
+                .withNickName("nickName").withTitle("Title").withCompany("companyName").withAddress("addressName")
+                .withHomePhone("homePhone").withMobilePhone("mobilePhone").withWorkPhone("workPhone").withFaxPhone("faxPhone")
+                .withEmail("email1").withNewGroup("test1").withHomePage("homePage").withPhoto(photo));
+      }
     }
   }
 
   @Test
   public void testContactModification() {
-    Contacts before = app.contact().all();
+    //Contacts before = app.contact().all();
+    Contacts before = app.db().contacts();
     ContactData modifiedContact = before.iterator().next();
     ContactData contact = new ContactData().withId(modifiedContact.getId()).withFirstName("Vera").withLastName("Malakovich");
     app.contact().modify(contact);
     assertThat(app.contact().count(), equalTo(before.size()));
-    Contacts after = app.contact().all();
+    //Contacts after = app.contact().all();
+    Contacts after = app.db().contacts();
     assertThat(after, equalTo(before.withModified(modifiedContact, contact)));
   }
 }
