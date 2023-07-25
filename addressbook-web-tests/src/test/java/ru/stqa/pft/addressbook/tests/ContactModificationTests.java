@@ -3,8 +3,6 @@ package ru.stqa.pft.addressbook.tests;
 import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.ContactData;
 import ru.stqa.pft.addressbook.model.Contacts;
-import ru.stqa.pft.addressbook.model.GroupData;
-import ru.stqa.pft.addressbook.model.Groups;
 import org.testng.annotations.BeforeMethod;
 
 import java.io.File;
@@ -24,7 +22,7 @@ public class ContactModificationTests extends TestBase{
         app.contact().create(new ContactData().withFirstName("Vera").withMiddleName("Anatolevna").withLastName("Malakovich")
                 .withNickName("nickName").withTitle("Title").withCompany("companyName").withAddress("addressName")
                 .withHomePhone("homePhone").withMobilePhone("mobilePhone").withWorkPhone("workPhone").withFaxPhone("faxPhone")
-                .withEmail("email1").withHomePage("homePage").withPhoto(photo));//.withNewGroup("test1")
+                .withEmail("email1").withNewGroup("test1").withHomePage("homePage").withPhoto(photo));
       }
     }
   }

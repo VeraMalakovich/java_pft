@@ -5,7 +5,6 @@ import com.beust.jcommander.Parameter;
 import com.beust.jcommander.ParameterException;
 import com.google.gson.*;
 import ru.stqa.pft.addressbook.model.ContactData;
-import ru.stqa.pft.addressbook.model.GroupData;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -67,7 +66,7 @@ public class ContactDataGenerator implements JsonSerializer<File> {
               .withEmail2(String.format("email%s@yandex.com", i)).withEmail3(String.format("email%s@gmail.com", i))
               .withHomePhone(String.format("+%s%s%s", i, i, i)).withWorkPhone(String.format("+%s%s%s%s", i, i, i, i))
               .withFaxPhone(String.format("+%s", i)).withHomePage(String.format("home_page/%s", i))
-              .inGroup(new GroupData().withName("group1")).withSecondAddress(String.format("address_2 %s", i))
+              .withNewGroup(String.format("test %s", i)).withSecondAddress(String.format("address_2 %s", i))
               .withSecondHomePhone(String.format("+%s%s", i, i)));
     }
     return contacts;
