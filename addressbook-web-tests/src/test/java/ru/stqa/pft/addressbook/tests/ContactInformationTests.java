@@ -19,7 +19,7 @@ public class ContactInformationTests extends TestBase {
         app.contact().create(new ContactData().withFirstName("Vera").withMiddleName("Anatolevna").withLastName("Malakovich")
                 .withNickName("nickName").withTitle("Title").withCompany("companyName").withAddress("Ptituchkogo 86, 30")
                 .withHomePhone("315-38-12").withMobilePhone("+375295789988").withWorkPhone("22 333 444").withFaxPhone("faxPhone")
-                .withEmail("email1").withEmail2("vera2@tut.by").withEmail3("vera3@tut.by").withNewGroup("test1")
+                .withEmail("email1").withEmail2("vera2@tut.by").withEmail3("vera3@tut.by")//.withNewGroup("test1")
                 .withSecondAddress("Minsk").withSecondHomePhone("+375295789528").withHomePage("homePage"));
       }
     }

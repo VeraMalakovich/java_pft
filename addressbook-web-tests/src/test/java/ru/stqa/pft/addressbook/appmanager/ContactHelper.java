@@ -42,11 +42,15 @@ public class ContactHelper extends BaseHelper{
     attach(By.name("photo"), contactData.getPhoto());
 
     if (creation) {
-      try {
+      if (contactData.getGroups().size() > 0) {
+        Assert.assertEquals(contactData.getGroups().size(), 1);
+        selectByText(By.name("new_group"), contactData.getGroups().iterator().next().getName());
+      }
+      /*try {
         selectByText(By.name("new_group"), contactData.getNewGroup());
       } catch (Exception NoSuchElementException) {
         selectDefault(By.name("new_group"));
-      }
+      }*/
     } else {
       Assert.assertFalse(isElementPresent(By.name("new_group")));
     }

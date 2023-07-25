@@ -4,7 +4,9 @@ import com.google.gson.annotations.Expose;
 import org.hibernate.annotations.Type;
 import javax.persistence.*;
 import java.io.File;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 @Table(name = "addressbook")
@@ -66,8 +68,12 @@ public class ContactData {
   @Transient
   private String allEmails;
   @Expose
-  @Transient
-  private String newGroup;
+  @ManyToMany(fetch = FetchType.EAGER)
+  @JoinTable(name = "address_in_groups",
+          joinColumns =  @JoinColumn(name = "id"), inverseJoinColumns = @JoinColumn(name = "group_id"))
+  private Set<GroupData> groups = new HashSet<GroupData>();
+  /*@Transient
+  private String newGroup;*/
   @Expose
   @Transient
   private String address2;
@@ -142,8 +148,12 @@ public class ContactData {
     return email3;
   }
 
-  public String getNewGroup() {
+  /*public String getNewGroup() {
     return newGroup;
+  }*/
+
+  public Groups getGroups() {
+    return new Groups(groups );
   }
 
   public String getSecondAddress() {
@@ -273,8 +283,13 @@ public class ContactData {
     return this;
   }
 
-  public ContactData withNewGroup(String newGroup) {
+  /*public ContactData withNewGroup(String newGroup) {
     this.newGroup = newGroup;
+    return this;
+  }*/
+
+  public ContactData inGroup(GroupData group){
+    groups.add(group);
     return this;
   }
 

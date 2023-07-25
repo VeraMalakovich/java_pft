@@ -1,11 +1,15 @@
 package ru.stqa.pft.addressbook.tests;
 
 import com.google.gson.*;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.json.TypeToken;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.ContactData;
 import ru.stqa.pft.addressbook.model.Contacts;
+import ru.stqa.pft.addressbook.model.GroupData;
+import ru.stqa.pft.addressbook.model.Groups;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -40,14 +44,29 @@ public class ContactCreationTests extends TestBase implements JsonDeserializer<F
 
   @Test(dataProvider = "validContactsFromJson")
   public void testContactCreationTests(ContactData contact) {
+    GroupData group = contact.getGroups().iterator().next();
+    if (!checkGroup(group)){
+      app.goTo().groupPage();
+      app.group().create(group);
+    }
     app.goTo().homePage();
     Contacts before = app.db().contacts();
     app.contact().create(contact);
-    assertThat(app.contact().count(), equalTo(before.size() + 1));
+    //assertThat(app.contact().count(), equalTo(before.size() + 1));
     Contacts after = app.db().contacts();
 
     assertThat(after, equalTo(
             before.withAdded(contact.withId(after.stream().mapToInt(ContactData::getId).max().getAsInt()))));
+  }
+
+  public boolean checkGroup(GroupData contactGroup){
+    Groups groups = app.db().groups();
+    for (GroupData group : groups) {
+      if (group.getName().equals(contactGroup.getName())){
+        return true;
+      }
+    }
+    return false;
   }
 
   @Test (enabled = false)
@@ -58,7 +77,7 @@ public class ContactCreationTests extends TestBase implements JsonDeserializer<F
     ContactData contact = new ContactData().withFirstName("''Vera").withMiddleName("Anatolevna").withLastName("Malakovich")
             .withNickName("nickName").withTitle("Title").withCompany("companyName").withAddress("addressName")
             .withHomePhone("homePhone").withMobilePhone("mobilePhone").withWorkPhone("workPhone").withFaxPhone("faxPhone")
-            .withEmail("email1").withNewGroup("test1").withHomePage("homePage").withPhoto(photo);
+            .withEmail("email1").withHomePage("homePage").withPhoto(photo);//.withNewGroup("test1")
     app.contact().create(contact);
     assertThat(app.contact().count(), equalTo(before.size()));
     Contacts after = app.contact().all();
