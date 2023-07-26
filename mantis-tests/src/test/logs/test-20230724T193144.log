@@ -1,0 +1,18 @@
+19:31:44.474 [main] INFO  org.hibernate.Version -- HHH000412: Hibernate ORM core version 5.6.15.Final
+19:31:44.808 [main] INFO  o.h.annotations.common.Version -- HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+19:31:44.876 [main] WARN  o.hibernate.orm.connections.pooling -- HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+19:31:44.881 [main] INFO  o.hibernate.orm.connections.pooling -- HHH10001005: using driver [com.mysql.cj.jdbc.Driver] at URL [jdbc:mysql://localhost:3306/addressbook]
+19:31:44.881 [main] INFO  o.hibernate.orm.connections.pooling -- HHH10001001: Connection properties: {user=root, password=****}
+19:31:44.885 [main] INFO  o.hibernate.orm.connections.pooling -- HHH10001003: Autocommit mode: false
+19:31:44.889 [main] INFO  o.h.e.j.c.i.DriverManagerConnectionProviderImpl -- HHH000115: Hibernate connection pool size: 1 (min=1)
+19:31:45.036 [main] INFO  org.hibernate.dialect.Dialect -- HHH000400: Using dialect: org.hibernate.dialect.MySQLDialect
+19:31:45.565 [main] INFO  o.hibernate.orm.connections.access -- HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@4487c0c2] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+19:31:45.634 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator -- HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+19:31:48.795 [main] INFO  r.s.pft.addressbook.tests.TestBase -- Start test testBadGroupCreation with parameters: []
+19:31:50.105 [main] INFO  r.s.pft.addressbook.tests.TestBase -- Stop test testBadGroupCreation
+19:31:50.146 [main] INFO  r.s.pft.addressbook.tests.TestBase -- Start test testGroupCreation with parameters: [GroupData{id='2147483647', name='test 0'}]
+19:31:51.200 [main] INFO  r.s.pft.addressbook.tests.TestBase -- Stop test testGroupCreation
+19:31:51.200 [main] INFO  r.s.pft.addressbook.tests.TestBase -- Start test testGroupCreation with parameters: [GroupData{id='2147483647', name='test 1'}]
+19:31:52.259 [main] INFO  r.s.pft.addressbook.tests.TestBase -- Stop test testGroupCreation
+19:31:52.259 [main] INFO  r.s.pft.addressbook.tests.TestBase -- Start test testGroupCreation with parameters: [GroupData{id='2147483647', name='test 2'}]
+19:31:53.338 [main] INFO  r.s.pft.addressbook.tests.TestBase -- Stop test testGroupCreation
