@@ -1,2 +1,0 @@
-18:24:19.922 [main] INFO  org.hibernate.Version -- HHH000412: Hibernate ORM core version 5.6.15.Final
-18:24:20.066 [main] INFO  r.s.pft.addressbook.tests.TestBase -- Stop test testGroupModification
