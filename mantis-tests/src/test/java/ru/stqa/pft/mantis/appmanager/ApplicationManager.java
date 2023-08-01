@@ -5,6 +5,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.remote.Browser;
+import ru.stqa.pft.mantis.model.User;
 
 import java.io.FileReader;
 import java.io.IOException;
@@ -19,6 +20,9 @@ public class ApplicationManager {
   private FtpHelper ftp;
   private MailHelper mailHelper;
   private JamesHelper jamesHelper;
+  private DbHelper dbHelper;
+  private UserHelper userHelper;
+  private NavigationHelper navigationHelper;
 
   public ApplicationManager(String browser) throws IOException {
     this.browser = browser;
@@ -86,5 +90,26 @@ public class ApplicationManager {
       jamesHelper = new JamesHelper(this);
     }
     return jamesHelper;
+  }
+
+  public UserHelper user() {
+    if (userHelper == null){
+      userHelper = new UserHelper(this);
+    }
+    return userHelper;
+  }
+
+  public NavigationHelper navigation() {
+    if (navigationHelper == null){
+      navigationHelper = new NavigationHelper(this);
+    }
+    return navigationHelper;
+  }
+
+  public DbHelper db() {
+    if (dbHelper == null){
+      dbHelper = new DbHelper();
+    }
+    return dbHelper;
   }
 }
