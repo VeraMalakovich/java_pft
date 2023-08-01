@@ -18,6 +18,7 @@ public class ApplicationManager {
   private WebDriver wd;
   private FtpHelper ftp;
   private MailHelper mailHelper;
+  private JamesHelper jamesHelper;
 
   public ApplicationManager(String browser) throws IOException {
     this.browser = browser;
@@ -78,5 +79,12 @@ public class ApplicationManager {
       ftp = new FtpHelper(this);
     }
     return ftp;
+  }
+
+  public JamesHelper james() {
+    if (jamesHelper == null) {
+      jamesHelper = new JamesHelper(this);
+    }
+    return jamesHelper;
   }
 }
